@@ -2,6 +2,8 @@
 
 ### Prerequisites
 
+Download the dataset from [https://www.kaggle.com/datasets/hojjatk/mnist-dataset?resource=download](https://www.kaggle.com/datasets/hojjatk/mnist-dataset?resource=download) link and keep it in dataset dir.
+
 Ensure to have **GCC compiler** installed and accessible from your system's PATH
 
 ```sh
