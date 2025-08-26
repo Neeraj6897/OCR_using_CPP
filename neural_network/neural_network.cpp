@@ -10,4 +10,4 @@ void NeuralNetwork::addLayer(unique_ptr<Layer> layer) {
             activation = layer->forward(activation);
         }
         return activation;  
-    } 
+    }

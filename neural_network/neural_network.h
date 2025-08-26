@@ -15,8 +15,20 @@ class NeuralNetwork {
     public:
         void addLayer(unique_ptr<Layer> layer);
 
-        //Running forward pass through all layers
+        // Forward propagation using predict function
         vector<float> predict(const vector<float>& input) const;
+
+        // Add this accessor for serialization
+        Layer* getLayer(int index) const {
+        if (index >= 0 && index < static_cast<int>(layers_.size())) {
+            return layers_[index].get();
+        }
+        return nullptr;
+        }
+    
+        int getLayerCount() const {
+            return static_cast<int>(layers_.size());
+        }
 
     private:
         vector<unique_ptr<Layer>> layers_;

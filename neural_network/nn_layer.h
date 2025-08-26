@@ -3,6 +3,7 @@
 
 #include "layer.h"
 #include <vector>
+#include <string>
 
 class NN_Layer : public Layer {
     public:
@@ -11,6 +12,10 @@ class NN_Layer : public Layer {
         vector<float> forward(const vector<float>& input) override;
         vector<float> backward(const vector<float>& gradient_output) override;
         void update(float learning_rate) override;
+
+        //Adding for serialization purposes
+        void saveWeights(const string& filename) const;
+        void loadWeights(const string& filename);
 
     private:
          int input_size_;

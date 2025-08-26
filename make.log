@@ -1,0 +1,10 @@
+g++ -std=c++17 -Wall -O2 -I. main.cpp dataset_loader.cpp normalize.cpp loss_function/cross_entropy_loss.cpp neural_network/trainer.cpp neural_network/nn_layer.cpp neural_network/activation_function.cpp neural_network/softmax.cpp neural_network/neural_network.cpp -o ocr_train
+dataset_loader.cpp: In function ‘std::vector<std::vector<unsigned char> > loadImages(const std::string&)’:
+dataset_loader.cpp:23:9: warning: unused variable ‘magic’ [-Wunused-variable]
+   23 |     int magic = readBigEndianInt(file);
+      |         ^~~~~
+dataset_loader.cpp: In function ‘std::vector<unsigned char> loadLabels(const std::string&)’:
+dataset_loader.cpp:45:9: warning: unused variable ‘magic’ [-Wunused-variable]
+   45 |     int magic = readBigEndianInt(file);
+      |         ^~~~~
+g++ -std=c++17 -Wall -O2 -I. ocr_inference.cpp image_preprocessor.cpp neural_network/nn_layer.cpp neural_network/activation_function.cpp neural_network/softmax.cpp neural_network/neural_network.cpp -o ocr_inference

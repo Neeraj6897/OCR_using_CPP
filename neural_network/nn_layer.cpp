@@ -2,6 +2,8 @@
 #include <iostream>
 #include <random>
 #include <stdexcept>
+#include <fstream>
+#include <omp.h>
 
 using namespace std;
 
@@ -36,6 +38,8 @@ vector<float> NN_Layer::forward(const vector<float>& input) {
 
     vector<float> output(output_size_, 0.0f);
 
+    //Adding omp parallel pragma
+    #pragma omp parallel for
     for(int i=0; i<output_size_; i++) {
         float sum = biases_[i];
 
@@ -48,24 +52,87 @@ vector<float> NN_Layer::forward(const vector<float>& input) {
 }
 
 vector<float> NN_Layer::backward(const vector<float>& gradient_output) {
+    
     vector<float> gradient_input(input_size_, 0.0f);
 
-    for(int i=0; i<output_size_; i++) {
+    #pragma omp parallel 
+    {
+        vector<float> local_gradient_input(input_size_, 0.0f);
+
+        #pragma omp for nowait
+        for(int i=0; i<output_size_; i++) {
         gradient_biases_[i] = gradient_output[i];
         for(int j=0; j<input_size_; j++) {
             gradient_weights_[i * input_size_ + j] = gradient_output[i] * last_input_[j];
             //weights_[i * input_size_ + j] -= learning_rate * gradient_output[i] * input[j];
-            gradient_input[j] += gradient_output[i] * weights_[i * input_size_ + j];
+            local_gradient_input[j] += gradient_output[i] * weights_[i * input_size_ + j];
         }
+    }
+    #pragma omp critical
+    {
+        for(int j=0; j<input_size_; j++) {
+            gradient_input[j] += local_gradient_input[j];
+        }
+    }
     }
     return gradient_input;
 }
 
 void NN_Layer::update(float learning_rate) {
+    #pragma omp parallel for
     for(int i=0; i<output_size_; i++) {
         biases_[i] -= learning_rate * gradient_biases_[i];
         for(int j=0; j<input_size_; j++) {
             weights_[i * input_size_ + j] -= learning_rate * gradient_weights_[i * input_size_ + j];
         }
     }
+}
+
+// Adding below code for serialization purpose
+void NN_Layer::saveWeights(const string& filename) const {
+    ofstream out(filename, ios::binary);
+    if (! out) {
+        throw runtime_error("Could not open file for saving weights");
+    }
+
+    //out.write(reinterpret_cast<const char*>(&input_size_), sizeof(input_size_));
+    //out.write(reinterpret_cast<const char*>(&output_size_), sizeof(output_size_));
+    out.write(reinterpret_cast<const char*>(weights_.data()), weights_.size() * sizeof(float));
+    out.write(reinterpret_cast<const char*>(biases_.data()), biases_.size() * sizeof(float));
+
+    if (!out) {
+        throw runtime_error("Error writing weights to file");
+    }
+    out.close();
+}
+
+void NN_Layer::loadWeights(const string& filename) {
+    ifstream in(filename, ios::binary | ios::ate);
+    if (!in) {
+        throw runtime_error("Could not open file for loading weights");
+    }
+
+    streamsize file_size = in.tellg();
+    in.seekg(0, ios::beg);
+
+    size_t expected_bytes = (weights_.size() + biases_.size()) * sizeof(float);
+
+    if (file_size != expected_bytes) {
+        string error_msg = "Weight file size mismatch for " + filename +
+                           ". Expected " + to_string(expected_bytes) +
+                           " bytes, but got " + to_string(file_size) + " bytes.";
+        throw runtime_error(error_msg);
+    }
+
+    //in.read(reinterpret_cast<char*>(&input_size_), sizeof(input_size_));
+    //in.read(reinterpret_cast<char*>(&output_size_), sizeof(output_size_));
+    //weights_.resize(output_size_ * input_size_);
+    //biases_.resize(output_size_);
+    in.read(reinterpret_cast<char*>(weights_.data()), weights_.size() * sizeof(float));
+    in.read(reinterpret_cast<char*>(biases_.data()), biases_.size() * sizeof(float));
+
+    if (!in) {
+        throw runtime_error("Error reading weights from file");
+    }
+    in.close();
 }

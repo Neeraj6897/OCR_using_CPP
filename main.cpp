@@ -75,6 +75,24 @@ int main() {
     cout << " Training complete." << endl;
     cout << "==================================================================" << endl;
 
+    //Adding for serialization purposes
+    //const auto& layers = network.getLayers();
+    auto* layer1 = dynamic_cast<NN_Layer*>(network.getLayer(0));
+    if (layer1) {
+        layer1->saveWeights("layer1_weights.bin");
+        cout << " Layer 1 weights saved to 'layer1_weights.bin'" << endl;
+    } else {
+        cerr << " Error: Layer 1 is not of type NN_Layer." << endl;
+    }
+
+    auto* layer2 = dynamic_cast<NN_Layer*>(network.getLayer(2));
+    if (layer2) {
+        layer2->saveWeights("layer2_weights.bin");
+        cout << " Layer 2 weights saved to 'layer2_weights.bin'" << endl;
+    } else {
+        cerr << " Error: Layer 2 is not of type NN_Layer." << endl;
+    }
+
     cout << "\n Evaluating network on test data..." << endl;
     float accuracy = trainer.test(test_images_1d, test_labels, num_test_images, image_size);
 
