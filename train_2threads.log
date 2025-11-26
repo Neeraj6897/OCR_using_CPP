@@ -1,0 +1,46 @@
+ Loading dataset...
+ Preparing data for training input (1-D vector)
+ Data loaded: 60000 training images, and 10000 testing images.
+ Building the neural network...
+
+ Starting the training for 20 epochs...
+ Epoch 1/20 | Average Loss: 0.278756
+ Epoch 2/20 | Average Loss: 0.123051
+ Epoch 3/20 | Average Loss: 0.086994
+ Epoch 4/20 | Average Loss: 0.0649543
+ Epoch 5/20 | Average Loss: 0.04935
+ Epoch 6/20 | Average Loss: 0.0381451
+ Epoch 7/20 | Average Loss: 0.0293611
+ Epoch 8/20 | Average Loss: 0.0221737
+ Epoch 9/20 | Average Loss: 0.0166276
+ Epoch 10/20 | Average Loss: 0.013072
+ Epoch 11/20 | Average Loss: 0.0102451
+ Epoch 12/20 | Average Loss: 0.00753348
+ Epoch 13/20 | Average Loss: 0.00601665
+ Epoch 14/20 | Average Loss: 0.00436708
+ Epoch 15/20 | Average Loss: 0.00313365
+ Epoch 16/20 | Average Loss: 0.00239108
+ Epoch 17/20 | Average Loss: 0.00193001
+ Epoch 18/20 | Average Loss: 0.00161074
+ Epoch 19/20 | Average Loss: 0.00138925
+ Epoch 20/20 | Average Loss: 0.00122703
+ Training complete.
+==================================================================
+ Layer 1 weights saved to 'layer1_weights.bin'
+ Layer 2 weights saved to 'layer2_weights.bin'
+
+ Evaluating network on test data...
+------------------------------------
+ Final Test Accuracy: 97.48%
+------------------------------------
+
+===== TRAINING TIMING SUMMARY =====
+Operation                  Total (ms)   Count   Avg (μs)
+---------------------------------------------------------
+Update 128x10                   12.69 1200000         0.0
+Update 784x128               16027.73 1200000        13.4
+Backward 784x128             23282.26 1200000        19.4
+Backward 128x10                 17.59 1200000         0.0
+Forward 128x10                 442.58 1210000         0.4
+Forward 784x128              65154.17 1210000        53.8
+=========================================================

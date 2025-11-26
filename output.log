@@ -1,0 +1,63 @@
+ Loading dataset...
+ Preparing data for training input (1-D vector)
+ Data loaded: 60000 training images, and 10000 testing images.
+ Building the neural network...
+
+ Starting the training for 50 epochs...
+ Epoch 1/50 | Average Loss: 0.280323
+ Epoch 2/50 | Average Loss: 0.124941
+ Epoch 3/50 | Average Loss: 0.088139
+ Epoch 4/50 | Average Loss: 0.0654118
+ Epoch 5/50 | Average Loss: 0.0491295
+ Epoch 6/50 | Average Loss: 0.0375429
+ Epoch 7/50 | Average Loss: 0.0279861
+ Epoch 8/50 | Average Loss: 0.0211908
+ Epoch 9/50 | Average Loss: 0.016502
+ Epoch 10/50 | Average Loss: 0.0126626
+ Epoch 11/50 | Average Loss: 0.00951202
+ Epoch 12/50 | Average Loss: 0.00722678
+ Epoch 13/50 | Average Loss: 0.00535289
+ Epoch 14/50 | Average Loss: 0.00405013
+ Epoch 15/50 | Average Loss: 0.00313468
+ Epoch 16/50 | Average Loss: 0.00255125
+ Epoch 17/50 | Average Loss: 0.00212348
+ Epoch 18/50 | Average Loss: 0.00178634
+ Epoch 19/50 | Average Loss: 0.00151565
+ Epoch 20/50 | Average Loss: 0.00132547
+ Epoch 21/50 | Average Loss: 0.00117668
+ Epoch 22/50 | Average Loss: 0.0010641
+ Epoch 23/50 | Average Loss: 0.000969704
+ Epoch 24/50 | Average Loss: 0.000893653
+ Epoch 25/50 | Average Loss: 0.000825672
+ Epoch 26/50 | Average Loss: 0.000768421
+ Epoch 27/50 | Average Loss: 0.00071643
+ Epoch 28/50 | Average Loss: 0.000673851
+ Epoch 29/50 | Average Loss: 0.000633351
+ Epoch 30/50 | Average Loss: 0.0005993
+ Epoch 31/50 | Average Loss: 0.000567647
+ Epoch 32/50 | Average Loss: 0.000539984
+ Epoch 33/50 | Average Loss: 0.000513277
+ Epoch 34/50 | Average Loss: 0.000489243
+ Epoch 35/50 | Average Loss: 0.000467894
+ Epoch 36/50 | Average Loss: 0.00044826
+ Epoch 37/50 | Average Loss: 0.000429794
+ Epoch 38/50 | Average Loss: 0.000413071
+ Epoch 39/50 | Average Loss: 0.000397605
+ Epoch 40/50 | Average Loss: 0.00038278
+ Epoch 41/50 | Average Loss: 0.000369412
+ Epoch 42/50 | Average Loss: 0.000356405
+ Epoch 43/50 | Average Loss: 0.00034452
+ Epoch 44/50 | Average Loss: 0.000333282
+ Epoch 45/50 | Average Loss: 0.000323106
+ Epoch 46/50 | Average Loss: 0.000313038
+ Epoch 47/50 | Average Loss: 0.000303779
+ Epoch 48/50 | Average Loss: 0.000295141
+ Epoch 49/50 | Average Loss: 0.000286672
+ Epoch 50/50 | Average Loss: 0.000278731
+ Training complete.
+==================================================================
+
+ Evaluating network on test data...
+------------------------------------
+ Final Test Accuracy: 97.52%
+------------------------------------
