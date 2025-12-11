@@ -1,0 +1,338 @@
+Flat profile:
+
+Each sample counts as 0.01 seconds.
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls   s/call   s/call  name    
+ 89.10    341.65   341.65  6000000     0.00     0.00  NN_Layer::update(float)
+  9.81    379.25    37.60  6000000     0.00     0.00  NN_Layer::backward(std::vector<float, std::allocator<float> > const&)
+  0.36    380.62     1.37  3010000     0.00     0.00  RELU::forward(std::vector<float, std::allocator<float> > const&)
+  0.18    381.32     0.70  3010000     0.00     0.00  SoftMaxLayer::forward(std::vector<float, std::allocator<float> > const&)
+  0.17    381.97     0.65  3000000     0.00     0.00  RELU::backward(std::vector<float, std::allocator<float> > const&)
+  0.14    382.51     0.54  3000000     0.00     0.00  SoftMaxLayer::backward(std::vector<float, std::allocator<float> > const&)
+  0.12    382.97     0.46  3000000     0.00     0.00  CrossEntropyLoss::compute(std::vector<float, std::allocator<float> > const&, std::vector<float, std::allocator<float> > const&)
+  0.04    383.11     0.14  3010000     0.00     0.00  NeuralNetwork::predict(std::vector<float, std::allocator<float> > const&) const
+  0.03    383.22     0.11        1     0.11   383.29  Trainer::train(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int, int)
+  0.02    383.28     0.06        2     0.03     0.03  flatteningImages(std::vector<std::vector<unsigned char, std::allocator<unsigned char> >, std::allocator<std::vector<unsigned char, std::allocator<unsigned char> > > >&)
+  0.02    383.34     0.06                             _init
+  0.01    383.39     0.05  6020000     0.00     0.00  NN_Layer::forward(std::vector<float, std::allocator<float> > const&)
+  0.01    383.42     0.03  3000000     0.00     0.00  CrossEntropyLoss::derivative(std::vector<float, std::allocator<float> > const&, std::vector<float, std::allocator<float> > const&)
+  0.00    383.43     0.01    70000     0.00     0.00  normalizeImage(std::vector<float, std::allocator<float> >&, unsigned long, unsigned long)
+  0.00    383.43     0.00  3000000     0.00     0.00  SoftMaxLayer::update(float)
+  0.00    383.43     0.00  3000000     0.00     0.00  RELU::update(float)
+  0.00    383.43     0.00      165     0.00     0.00  std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand()
+  0.00    383.43     0.00       13     0.00     0.00  frame_dummy
+  0.00    383.43     0.00        8     0.00     0.00  std::vector<float, std::allocator<float> >::_M_default_append(unsigned long)
+  0.00    383.43     0.00        6     0.00     0.00  std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&)
+  0.00    383.43     0.00        4     0.00     0.00  NeuralNetwork::addLayer(std::unique_ptr<Layer, std::default_delete<Layer> >)
+  0.00    383.43     0.00        3     0.00     0.00  void std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > >::_M_realloc_insert<std::unique_ptr<Layer, std::default_delete<Layer> > >(__gnu_cxx::__normal_iterator<std::unique_ptr<Layer, std::default_delete<Layer> >*, std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > > >, std::unique_ptr<Layer, std::default_delete<Layer> >&&)
+  0.00    383.43     0.00        2     0.00     0.00  loadImages(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  0.00    383.43     0.00        2     0.00     0.00  loadLabels(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+  0.00    383.43     0.00        2     0.00     0.00  NN_Layer::NN_Layer(int, int)
+  0.00    383.43     0.00        2     0.00     0.00  NN_Layer::~NN_Layer()
+  0.00    383.43     0.00        2     0.00     0.00  NN_Layer::saveWeights(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const
+  0.00    383.43     0.00        2     0.00     0.00  std::vector<std::vector<unsigned char, std::allocator<unsigned char> >, std::allocator<std::vector<unsigned char, std::allocator<unsigned char> > > >::~vector()
+  0.00    383.43     0.00        2     0.00     0.00  std::vector<float, std::allocator<float> >::~vector()
+  0.00    383.43     0.00        2     0.00     0.00  std::vector<unsigned char, std::allocator<unsigned char> >::~vector()
+  0.00    383.43     0.00        2     0.00     0.00  std::vector<unsigned char, std::allocator<unsigned char> >* std::__do_uninit_fill_n<std::vector<unsigned char, std::allocator<unsigned char> >*, unsigned long, std::vector<unsigned char, std::allocator<unsigned char> > >(std::vector<unsigned char, std::allocator<unsigned char> >*, unsigned long, std::vector<unsigned char, std::allocator<unsigned char> > const&)
+  0.00    383.43     0.00        1     0.00     0.00  SoftMaxLayer::~SoftMaxLayer()
+  0.00    383.43     0.00        1     0.00     0.00  RELU::~RELU()
+  0.00    383.43     0.00        1     0.00     0.01  Trainer::test(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int)
+  0.00    383.43     0.00        1     0.00     0.00  Trainer::Trainer(NeuralNetwork&, float)
+  0.00    383.43     0.00        1     0.00     0.00  std::ctype<char>::do_widen(char) const
+  0.00    383.43     0.00        1     0.00     0.00  std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > >::~vector()
+
+ %         the percentage of the total running time of the
+time       program used by this function.
+
+cumulative a running sum of the number of seconds accounted
+ seconds   for by this function and those listed above it.
+
+ self      the number of seconds accounted for by this
+seconds    function alone.  This is the major sort for this
+           listing.
+
+calls      the number of times this function was invoked, if
+           this function is profiled, else blank.
+
+ self      the average number of milliseconds spent in this
+ms/call    function per call, if this function is profiled,
+	   else blank.
+
+ total     the average number of milliseconds spent in this
+ms/call    function and its descendents per call, if this
+	   function is profiled, else blank.
+
+name       the name of the function.  This is the minor sort
+           for this listing. The index shows the location of
+	   the function in the gprof listing. If the index is
+	   in parenthesis it shows where it would appear in
+	   the gprof listing if it were to be printed.
+
+Copyright (C) 2012-2024 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+		     Call graph (explanation follows)
+
+
+granularity: each sample hit covers 4 byte(s) for 0.00% of 383.43 seconds
+
+index % time    self  children    called     name
+                                                 <spontaneous>
+[1]    100.0    0.00  383.37                 main [1]
+                0.11  383.18       1/1           Trainer::train(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int, int) [2]
+                0.06    0.00       2/2           flatteningImages(std::vector<std::vector<unsigned char, std::allocator<unsigned char> >, std::allocator<std::vector<unsigned char, std::allocator<unsigned char> > > >&) [11]
+                0.01    0.00   70000/70000       normalizeImage(std::vector<float, std::allocator<float> >&, unsigned long, unsigned long) [15]
+                0.00    0.01       1/1           Trainer::test(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int) [16]
+                0.00    0.00      13/13          frame_dummy [17]
+                0.00    0.00       6/6           std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) [27]
+                0.00    0.00       4/4           NeuralNetwork::addLayer(std::unique_ptr<Layer, std::default_delete<Layer> >) [28]
+                0.00    0.00       3/3           void std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > >::_M_realloc_insert<std::unique_ptr<Layer, std::default_delete<Layer> > >(__gnu_cxx::__normal_iterator<std::unique_ptr<Layer, std::default_delete<Layer> >*, std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > > >, std::unique_ptr<Layer, std::default_delete<Layer> >&&) [29]
+                0.00    0.00       2/2           loadImages(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [30]
+                0.00    0.00       2/2           loadLabels(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [31]
+                0.00    0.00       2/2           NN_Layer::NN_Layer(int, int) [32]
+                0.00    0.00       2/2           NN_Layer::saveWeights(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [34]
+                0.00    0.00       2/2           std::vector<float, std::allocator<float> >::~vector() [36]
+                0.00    0.00       2/2           std::vector<unsigned char, std::allocator<unsigned char> >::~vector() [37]
+                0.00    0.00       2/2           std::vector<std::vector<unsigned char, std::allocator<unsigned char> >, std::allocator<std::vector<unsigned char, std::allocator<unsigned char> > > >::~vector() [35]
+                0.00    0.00       1/1           Trainer::Trainer(NeuralNetwork&, float) [41]
+                0.00    0.00       1/1           std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > >::~vector() [43]
+-----------------------------------------------
+                0.11  383.18       1/1           main [1]
+[2]    100.0    0.11  383.18       1         Trainer::train(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int, int) [2]
+              341.65    0.00 6000000/6000000     NN_Layer::update(float) [3]
+               37.60    0.00 6000000/6000000     NN_Layer::backward(std::vector<float, std::allocator<float> > const&) [4]
+                0.14    2.11 3000000/3010000     NeuralNetwork::predict(std::vector<float, std::allocator<float> > const&) const [5]
+                0.65    0.00 3000000/3000000     RELU::backward(std::vector<float, std::allocator<float> > const&) [8]
+                0.54    0.00 3000000/3000000     SoftMaxLayer::backward(std::vector<float, std::allocator<float> > const&) [9]
+                0.46    0.00 3000000/3000000     CrossEntropyLoss::compute(std::vector<float, std::allocator<float> > const&, std::vector<float, std::allocator<float> > const&) [10]
+                0.03    0.00 3000000/3000000     CrossEntropyLoss::derivative(std::vector<float, std::allocator<float> > const&, std::vector<float, std::allocator<float> > const&) [14]
+                0.00    0.00 3000000/3000000     SoftMaxLayer::update(float) [23]
+                0.00    0.00 3000000/3000000     RELU::update(float) [24]
+-----------------------------------------------
+              341.65    0.00 6000000/6000000     Trainer::train(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int, int) [2]
+[3]     89.1  341.65    0.00 6000000         NN_Layer::update(float) [3]
+-----------------------------------------------
+               37.60    0.00 6000000/6000000     Trainer::train(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int, int) [2]
+[4]      9.8   37.60    0.00 6000000         NN_Layer::backward(std::vector<float, std::allocator<float> > const&) [4]
+-----------------------------------------------
+                0.00    0.01   10000/3010000     Trainer::test(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int) [16]
+                0.14    2.11 3000000/3010000     Trainer::train(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int, int) [2]
+[5]      0.6    0.14    2.12 3010000         NeuralNetwork::predict(std::vector<float, std::allocator<float> > const&) const [5]
+                1.37    0.00 3010000/3010000     RELU::forward(std::vector<float, std::allocator<float> > const&) [6]
+                0.70    0.00 3010000/3010000     SoftMaxLayer::forward(std::vector<float, std::allocator<float> > const&) [7]
+                0.05    0.00 6020000/6020000     NN_Layer::forward(std::vector<float, std::allocator<float> > const&) [13]
+-----------------------------------------------
+                1.37    0.00 3010000/3010000     NeuralNetwork::predict(std::vector<float, std::allocator<float> > const&) const [5]
+[6]      0.4    1.37    0.00 3010000         RELU::forward(std::vector<float, std::allocator<float> > const&) [6]
+-----------------------------------------------
+                0.70    0.00 3010000/3010000     NeuralNetwork::predict(std::vector<float, std::allocator<float> > const&) const [5]
+[7]      0.2    0.70    0.00 3010000         SoftMaxLayer::forward(std::vector<float, std::allocator<float> > const&) [7]
+-----------------------------------------------
+                0.65    0.00 3000000/3000000     Trainer::train(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int, int) [2]
+[8]      0.2    0.65    0.00 3000000         RELU::backward(std::vector<float, std::allocator<float> > const&) [8]
+-----------------------------------------------
+                0.54    0.00 3000000/3000000     Trainer::train(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int, int) [2]
+[9]      0.1    0.54    0.00 3000000         SoftMaxLayer::backward(std::vector<float, std::allocator<float> > const&) [9]
+-----------------------------------------------
+                0.46    0.00 3000000/3000000     Trainer::train(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int, int) [2]
+[10]     0.1    0.46    0.00 3000000         CrossEntropyLoss::compute(std::vector<float, std::allocator<float> > const&, std::vector<float, std::allocator<float> > const&) [10]
+-----------------------------------------------
+                0.06    0.00       2/2           main [1]
+[11]     0.0    0.06    0.00       2         flatteningImages(std::vector<std::vector<unsigned char, std::allocator<unsigned char> >, std::allocator<std::vector<unsigned char, std::allocator<unsigned char> > > >&) [11]
+-----------------------------------------------
+                                                 <spontaneous>
+[12]     0.0    0.06    0.00                 _init [12]
+-----------------------------------------------
+                0.05    0.00 6020000/6020000     NeuralNetwork::predict(std::vector<float, std::allocator<float> > const&) const [5]
+[13]     0.0    0.05    0.00 6020000         NN_Layer::forward(std::vector<float, std::allocator<float> > const&) [13]
+-----------------------------------------------
+                0.03    0.00 3000000/3000000     Trainer::train(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int, int) [2]
+[14]     0.0    0.03    0.00 3000000         CrossEntropyLoss::derivative(std::vector<float, std::allocator<float> > const&, std::vector<float, std::allocator<float> > const&) [14]
+-----------------------------------------------
+                0.01    0.00   70000/70000       main [1]
+[15]     0.0    0.01    0.00   70000         normalizeImage(std::vector<float, std::allocator<float> >&, unsigned long, unsigned long) [15]
+-----------------------------------------------
+                0.00    0.01       1/1           main [1]
+[16]     0.0    0.00    0.01       1         Trainer::test(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int) [16]
+                0.00    0.01   10000/3010000     NeuralNetwork::predict(std::vector<float, std::allocator<float> > const&) const [5]
+-----------------------------------------------
+                0.00    0.00      13/13          main [1]
+[17]     0.0    0.00    0.00      13         frame_dummy [17]
+                0.00    0.00       1/1           std::ctype<char>::do_widen(char) const [42]
+-----------------------------------------------
+                0.00    0.00 3000000/3000000     Trainer::train(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int, int) [2]
+[23]     0.0    0.00    0.00 3000000         SoftMaxLayer::update(float) [23]
+-----------------------------------------------
+                0.00    0.00 3000000/3000000     Trainer::train(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int, int) [2]
+[24]     0.0    0.00    0.00 3000000         RELU::update(float) [24]
+-----------------------------------------------
+                0.00    0.00     165/165         NN_Layer::NN_Layer(int, int) [32]
+[25]     0.0    0.00    0.00     165         std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand() [25]
+-----------------------------------------------
+                0.00    0.00       8/8           NN_Layer::NN_Layer(int, int) [32]
+[26]     0.0    0.00    0.00       8         std::vector<float, std::allocator<float> >::_M_default_append(unsigned long) [26]
+-----------------------------------------------
+                0.00    0.00       6/6           main [1]
+[27]     0.0    0.00    0.00       6         std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&) [27]
+-----------------------------------------------
+                0.00    0.00       4/4           main [1]
+[28]     0.0    0.00    0.00       4         NeuralNetwork::addLayer(std::unique_ptr<Layer, std::default_delete<Layer> >) [28]
+-----------------------------------------------
+                0.00    0.00       3/3           main [1]
+[29]     0.0    0.00    0.00       3         void std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > >::_M_realloc_insert<std::unique_ptr<Layer, std::default_delete<Layer> > >(__gnu_cxx::__normal_iterator<std::unique_ptr<Layer, std::default_delete<Layer> >*, std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > > >, std::unique_ptr<Layer, std::default_delete<Layer> >&&) [29]
+-----------------------------------------------
+                0.00    0.00       2/2           main [1]
+[30]     0.0    0.00    0.00       2         loadImages(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [30]
+                0.00    0.00       2/2           std::vector<unsigned char, std::allocator<unsigned char> >* std::__do_uninit_fill_n<std::vector<unsigned char, std::allocator<unsigned char> >*, unsigned long, std::vector<unsigned char, std::allocator<unsigned char> > >(std::vector<unsigned char, std::allocator<unsigned char> >*, unsigned long, std::vector<unsigned char, std::allocator<unsigned char> > const&) [38]
+-----------------------------------------------
+                0.00    0.00       2/2           main [1]
+[31]     0.0    0.00    0.00       2         loadLabels(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [31]
+-----------------------------------------------
+                0.00    0.00       2/2           main [1]
+[32]     0.0    0.00    0.00       2         NN_Layer::NN_Layer(int, int) [32]
+                0.00    0.00     165/165         std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand() [25]
+                0.00    0.00       8/8           std::vector<float, std::allocator<float> >::_M_default_append(unsigned long) [26]
+-----------------------------------------------
+                0.00    0.00       2/2           std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > >::~vector() [43]
+[33]     0.0    0.00    0.00       2         NN_Layer::~NN_Layer() [33]
+-----------------------------------------------
+                0.00    0.00       2/2           main [1]
+[34]     0.0    0.00    0.00       2         NN_Layer::saveWeights(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const [34]
+-----------------------------------------------
+                0.00    0.00       2/2           main [1]
+[35]     0.0    0.00    0.00       2         std::vector<std::vector<unsigned char, std::allocator<unsigned char> >, std::allocator<std::vector<unsigned char, std::allocator<unsigned char> > > >::~vector() [35]
+-----------------------------------------------
+                0.00    0.00       2/2           main [1]
+[36]     0.0    0.00    0.00       2         std::vector<float, std::allocator<float> >::~vector() [36]
+-----------------------------------------------
+                0.00    0.00       2/2           main [1]
+[37]     0.0    0.00    0.00       2         std::vector<unsigned char, std::allocator<unsigned char> >::~vector() [37]
+-----------------------------------------------
+                0.00    0.00       2/2           loadImages(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [30]
+[38]     0.0    0.00    0.00       2         std::vector<unsigned char, std::allocator<unsigned char> >* std::__do_uninit_fill_n<std::vector<unsigned char, std::allocator<unsigned char> >*, unsigned long, std::vector<unsigned char, std::allocator<unsigned char> > >(std::vector<unsigned char, std::allocator<unsigned char> >*, unsigned long, std::vector<unsigned char, std::allocator<unsigned char> > const&) [38]
+-----------------------------------------------
+                0.00    0.00       1/1           std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > >::~vector() [43]
+[39]     0.0    0.00    0.00       1         SoftMaxLayer::~SoftMaxLayer() [39]
+-----------------------------------------------
+                0.00    0.00       1/1           std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > >::~vector() [43]
+[40]     0.0    0.00    0.00       1         RELU::~RELU() [40]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[41]     0.0    0.00    0.00       1         Trainer::Trainer(NeuralNetwork&, float) [41]
+-----------------------------------------------
+                0.00    0.00       1/1           frame_dummy [17]
+[42]     0.0    0.00    0.00       1         std::ctype<char>::do_widen(char) const [42]
+-----------------------------------------------
+                0.00    0.00       1/1           main [1]
+[43]     0.0    0.00    0.00       1         std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > >::~vector() [43]
+                0.00    0.00       2/2           NN_Layer::~NN_Layer() [33]
+                0.00    0.00       1/1           SoftMaxLayer::~SoftMaxLayer() [39]
+                0.00    0.00       1/1           RELU::~RELU() [40]
+-----------------------------------------------
+
+ This table describes the call tree of the program, and was sorted by
+ the total amount of time spent in each function and its children.
+
+ Each entry in this table consists of several lines.  The line with the
+ index number at the left hand margin lists the current function.
+ The lines above it list the functions that called this function,
+ and the lines below it list the functions this one called.
+ This line lists:
+     index	A unique number given to each element of the table.
+		Index numbers are sorted numerically.
+		The index number is printed next to every function name so
+		it is easier to look up where the function is in the table.
+
+     % time	This is the percentage of the `total' time that was spent
+		in this function and its children.  Note that due to
+		different viewpoints, functions excluded by options, etc,
+		these numbers will NOT add up to 100%.
+
+     self	This is the total amount of time spent in this function.
+
+     children	This is the total amount of time propagated into this
+		function by its children.
+
+     called	This is the number of times the function was called.
+		If the function called itself recursively, the number
+		only includes non-recursive calls, and is followed by
+		a `+' and the number of recursive calls.
+
+     name	The name of the current function.  The index number is
+		printed after it.  If the function is a member of a
+		cycle, the cycle number is printed between the
+		function's name and the index number.
+
+
+ For the function's parents, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the function into this parent.
+
+     children	This is the amount of time that was propagated from
+		the function's children into this parent.
+
+     called	This is the number of times this parent called the
+		function `/' the total number of times the function
+		was called.  Recursive calls to the function are not
+		included in the number after the `/'.
+
+     name	This is the name of the parent.  The parent's index
+		number is printed after it.  If the parent is a
+		member of a cycle, the cycle number is printed between
+		the name and the index number.
+
+ If the parents of the function cannot be determined, the word
+ `<spontaneous>' is printed in the `name' field, and all the other
+ fields are blank.
+
+ For the function's children, the fields have the following meanings:
+
+     self	This is the amount of time that was propagated directly
+		from the child into the function.
+
+     children	This is the amount of time that was propagated from the
+		child's children to the function.
+
+     called	This is the number of times the function called
+		this child `/' the total number of times the child
+		was called.  Recursive calls by the child are not
+		listed in the number after the `/'.
+
+     name	This is the name of the child.  The child's index
+		number is printed after it.  If the child is a
+		member of a cycle, the cycle number is printed
+		between the name and the index number.
+
+ If there are any cycles (circles) in the call graph, there is an
+ entry for the cycle-as-a-whole.  This entry shows who called the
+ cycle (as parents) and the members of the cycle (as children.)
+ The `+' recursive calls entry shows the number of function calls that
+ were internal to the cycle, and the calls entry for each member shows,
+ for that member, how many times it was called from other members of
+ the cycle.
+
+Copyright (C) 2012-2024 Free Software Foundation, Inc.
+
+Copying and distribution of this file, with or without modification,
+are permitted in any medium without royalty provided the copyright
+notice and this notice are preserved.
+
+Index by function name
+
+  [30] loadImages(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [8] RELU::backward(std::vector<float, std::allocator<float> > const&) [25] std::mersenne_twister_engine<unsigned long, 32ul, 624ul, 397ul, 31ul, 2567483615ul, 11ul, 4294967295ul, 7ul, 2636928640ul, 15ul, 4022730752ul, 18ul, 1812433253ul>::_M_gen_rand()
+  [31] loadLabels(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) [40] RELU::~RELU() [35] std::vector<std::vector<unsigned char, std::allocator<unsigned char> >, std::allocator<std::vector<unsigned char, std::allocator<unsigned char> > > >::~vector()
+  [15] normalizeImage(std::vector<float, std::allocator<float> >&, unsigned long, unsigned long) [16] Trainer::test(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int) [29] void std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > >::_M_realloc_insert<std::unique_ptr<Layer, std::default_delete<Layer> > >(__gnu_cxx::__normal_iterator<std::unique_ptr<Layer, std::default_delete<Layer> >*, std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > > >, std::unique_ptr<Layer, std::default_delete<Layer> >&&)
+  [11] flatteningImages(std::vector<std::vector<unsigned char, std::allocator<unsigned char> >, std::allocator<std::vector<unsigned char, std::allocator<unsigned char> > > >&) [2] Trainer::train(std::vector<float, std::allocator<float> > const&, std::vector<unsigned char, std::allocator<unsigned char> > const&, int, int, int) [43] std::vector<std::unique_ptr<Layer, std::default_delete<Layer> >, std::allocator<std::unique_ptr<Layer, std::default_delete<Layer> > > >::~vector()
+  [23] SoftMaxLayer::update(float) [41] Trainer::Trainer(NeuralNetwork&, float) [26] std::vector<float, std::allocator<float> >::_M_default_append(unsigned long)
+   [7] SoftMaxLayer::forward(std::vector<float, std::allocator<float> > const&) [3] NN_Layer::update(float) [36] std::vector<float, std::allocator<float> >::~vector()
+   [9] SoftMaxLayer::backward(std::vector<float, std::allocator<float> > const&) [13] NN_Layer::forward(std::vector<float, std::allocator<float> > const&) [37] std::vector<unsigned char, std::allocator<unsigned char> >::~vector()
+  [39] SoftMaxLayer::~SoftMaxLayer() [4] NN_Layer::backward(std::vector<float, std::allocator<float> > const&) [27] std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::basic_string<std::allocator<char> >(char const*, std::allocator<char> const&)
+  [28] NeuralNetwork::addLayer(std::unique_ptr<Layer, std::default_delete<Layer> >) [32] NN_Layer::NN_Layer(int, int) [38] std::vector<unsigned char, std::allocator<unsigned char> >* std::__do_uninit_fill_n<std::vector<unsigned char, std::allocator<unsigned char> >*, unsigned long, std::vector<unsigned char, std::allocator<unsigned char> > >(std::vector<unsigned char, std::allocator<unsigned char> >*, unsigned long, std::vector<unsigned char, std::allocator<unsigned char> > const&)
+  [14] CrossEntropyLoss::derivative(std::vector<float, std::allocator<float> > const&, std::vector<float, std::allocator<float> > const&) [33] NN_Layer::~NN_Layer() [12] _init
+  [10] CrossEntropyLoss::compute(std::vector<float, std::allocator<float> > const&, std::vector<float, std::allocator<float> > const&) [5] NeuralNetwork::predict(std::vector<float, std::allocator<float> > const&) const [17] frame_dummy
+  [24] RELU::update(float)    [34] NN_Layer::saveWeights(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) const
+   [6] RELU::forward(std::vector<float, std::allocator<float> > const&) [42] std::ctype<char>::do_widen(char) const
