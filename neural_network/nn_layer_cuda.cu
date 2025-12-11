@@ -10,12 +10,7 @@ inline void gpuAssert(cudaError_t code, const char *file, int line)
 }
 #define CUDA_CHECK(ans) gpuAssert((ans), __FILE__, __LINE__)
 
-__global__ void dense_forward_kernel(
-    const float* __restrict__ W,
-    const float* __restrict__ b,
-    const float* __restrict__ x,
-    float* __restrict__ y,      
-    int in_size, int out_size)
+__global__ void dense_forward_kernel(const float* __restrict__ W, const float* __restrict__ b, const float* __restrict__ x, float* __restrict__ y, int in_size, int out_size)
 {
     int i = blockIdx.x * blockDim.x + threadIdx.x;
     if (i >= out_size) return;
@@ -28,10 +23,7 @@ __global__ void dense_forward_kernel(
     y[i] = sum;
 }
 
-__global__ void k_grad_weights(const float* __restrict__ dY,
-                               const float* __restrict__ x,
-                               float* __restrict__ dW,
-                               int out_size, int in_size)
+__global__ void k_grad_weights(const float* __restrict__ dY, const float* __restrict__ x, float* __restrict__ dW, int out_size, int in_size)
 {
     int i = blockIdx.y * blockDim.y + threadIdx.y;
     int j = blockIdx.x * blockDim.x + threadIdx.x;
@@ -40,9 +32,7 @@ __global__ void k_grad_weights(const float* __restrict__ dY,
     }
 }
 
-__global__ void k_grad_bias(const float* __restrict__ dY,
-                            float* __restrict__ db,
-                            int out_size)
+__global__ void k_grad_bias(const float* __restrict__ dY, float* __restrict__ db, int out_size)
 {
     int i = blockIdx.x * blockDim.x + threadIdx.x;
     if (i < out_size) {
@@ -50,10 +40,7 @@ __global__ void k_grad_bias(const float* __restrict__ dY,
     }
 }
 
-__global__ void k_grad_input(const float* __restrict__ W,  
-                             const float* __restrict__ dY, 
-                             float* __restrict__ dX,       
-                             int out_size, int in_size)
+__global__ void k_grad_input(const float* __restrict__ W, const float* __restrict__ dY, float* __restrict__ dX, int out_size, int in_size)
 {
     int j = blockIdx.x * blockDim.x + threadIdx.x;
     if (j >= in_size) return;
@@ -66,9 +53,7 @@ __global__ void k_grad_input(const float* __restrict__ W,
     dX[j] = sum;
 }
 
-__global__ void k_update_weights(float* __restrict__ W,
-                                 const float* __restrict__ dW,
-                                 float lr, int n)
+__global__ void k_update_weights(float* __restrict__ W, const float* __restrict__ dW, float lr, int n)
 {
     int k = blockIdx.x * blockDim.x + threadIdx.x;
     if (k < n) {
@@ -76,9 +61,7 @@ __global__ void k_update_weights(float* __restrict__ W,
     }
 }
 
-__global__ void k_update_biases(float* __restrict__ b,
-                                const float* __restrict__ db,
-                                float lr, int out)
+__global__ void k_update_biases(float* __restrict__ b, const float* __restrict__ db, float lr, int out)
 {
     int i = blockIdx.x * blockDim.x + threadIdx.x;
     if (i < out) {
@@ -104,6 +87,7 @@ void NN_Layer::cudaFree_() {
     if (d_x_) cudaFree(d_x_);
     if (d_y_) cudaFree(d_y_);
     d_W_ = d_b_ = d_x_ = d_y_ = nullptr;
+
     if (d_dY_) cudaFree(d_dY_);
     if (d_dW_) cudaFree(d_dW_);
     if (d_db_) cudaFree(d_db_);
@@ -112,10 +96,8 @@ void NN_Layer::cudaFree_() {
 }
 
 void NN_Layer::cudaUploadParams_() {
-    CUDA_CHECK(cudaMemcpy(d_W_, weights_.data(),
-                          weights_.size()*sizeof(float), cudaMemcpyHostToDevice));
-    CUDA_CHECK(cudaMemcpy(d_b_, biases_.data(),
-                          biases_.size()*sizeof(float), cudaMemcpyHostToDevice));
+    CUDA_CHECK(cudaMemcpy(d_W_, weights_.data(), weights_.size()*sizeof(float), cudaMemcpyHostToDevice));
+    CUDA_CHECK(cudaMemcpy(d_b_, biases_.data(), biases_.size()*sizeof(float), cudaMemcpyHostToDevice));
 }
 
 void NN_Layer::cudaForward(const float* x_host, float* y_host) const {
@@ -128,16 +110,12 @@ void NN_Layer::cudaForward(const float* x_host, float* y_host) const {
     CUDA_CHECK(cudaMemcpy(y_host, d_y_, output_size_*sizeof(float), cudaMemcpyDeviceToHost));
 }
 
-void NN_Layer::cudaBackward(const float* gradY_host,
-                             float* gradX_host)
+void NN_Layer::cudaBackward(const float* gradY_host, float* gradX_host)
 {
-    CUDA_CHECK(cudaMemcpy(d_dY_, gradY_host,
-                          output_size_ * sizeof(float),
-                          cudaMemcpyHostToDevice));
+    CUDA_CHECK(cudaMemcpy(d_dY_, gradY_host, output_size_ * sizeof(float), cudaMemcpyHostToDevice));
 
     dim3 block2d(16, 16);
-    dim3 grid2d((input_size_  + block2d.x - 1) / block2d.x,
-                (output_size_ + block2d.y - 1) / block2d.y);
+    dim3 grid2d((input_size_  + block2d.x - 1) / block2d.x, (output_size_ + block2d.y - 1) / block2d.y);
     k_grad_weights<<<grid2d, block2d>>>(d_dY_, d_x_, d_dW_, output_size_, input_size_);
     CUDA_CHECK(cudaGetLastError());
 
@@ -147,21 +125,14 @@ void NN_Layer::cudaBackward(const float* gradY_host,
     CUDA_CHECK(cudaGetLastError());
 
     int blocks_x = (input_size_ + threads - 1) / threads;
-    k_grad_input<<<blocks_x, threads>>>(d_W_, d_dY_, d_dX_,
-                                        output_size_, input_size_);
+    k_grad_input<<<blocks_x, threads>>>(d_W_, d_dY_, d_dX_, output_size_, input_size_);
     CUDA_CHECK(cudaGetLastError());
 
     if (!update_on_gpu_) {
-        CUDA_CHECK(cudaMemcpy(gradient_weights_.data(), d_dW_,
-                            gradient_weights_.size() * sizeof(float),
-                            cudaMemcpyDeviceToHost));
-        CUDA_CHECK(cudaMemcpy(gradient_biases_.data(), d_db_,
-                            gradient_biases_.size() * sizeof(float),
-                            cudaMemcpyDeviceToHost));
+        CUDA_CHECK(cudaMemcpy(gradient_weights_.data(), d_dW_, gradient_weights_.size() * sizeof(float), cudaMemcpyDeviceToHost));
+        CUDA_CHECK(cudaMemcpy(gradient_biases_.data(), d_db_, gradient_biases_.size() * sizeof(float), cudaMemcpyDeviceToHost));
     }
-    CUDA_CHECK(cudaMemcpy(gradX_host, d_dX_,
-                          input_size_ * sizeof(float),
-                          cudaMemcpyDeviceToHost));
+    CUDA_CHECK(cudaMemcpy(gradX_host, d_dX_, input_size_ * sizeof(float), cudaMemcpyDeviceToHost));
 }
 
 void NN_Layer::cudaUpdate(float lr)
@@ -181,12 +152,8 @@ void NN_Layer::cudaUpdate(float lr)
 
 void NN_Layer::syncDeviceToHost_() {
   if (!host_params_dirty_) return;
-  CUDA_CHECK(cudaMemcpy(weights_.data(), d_W_,
-                        weights_.size() * sizeof(float),
-                        cudaMemcpyDeviceToHost));
-  CUDA_CHECK(cudaMemcpy(biases_.data(), d_b_,
-                        biases_.size() * sizeof(float),
-                        cudaMemcpyDeviceToHost));
+  CUDA_CHECK(cudaMemcpy(weights_.data(), d_W_, weights_.size() * sizeof(float), cudaMemcpyDeviceToHost));
+  CUDA_CHECK(cudaMemcpy(biases_.data(), d_b_, biases_.size() * sizeof(float), cudaMemcpyDeviceToHost));
   host_params_dirty_ = false;
 }
 

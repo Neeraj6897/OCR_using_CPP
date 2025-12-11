@@ -24,7 +24,7 @@ class NN_Layer : public Layer {
         const std::vector<float>& getGradientWeights() const { return gradient_weights_; }
         const std::vector<float>& getGradientBiases() const { return gradient_biases_; }
         
-        // Setters for creating identical layers
+        //Setters for creating identical layers
         void setWeights(const std::vector<float>& weights) { 
             if (weights.size() != weights_.size()) {
                 throw std::invalid_argument("Weight vector size mismatch");
@@ -39,7 +39,6 @@ class NN_Layer : public Layer {
             biases_ = biases; 
         }
 
-        // (optional) toggle
         void enable_cuda(bool on) { use_cuda_ = on; }
 
     private:
@@ -54,19 +53,18 @@ class NN_Layer : public Layer {
 
         #ifdef USE_CUDA
             bool use_cuda_ = true;
-            bool update_on_gpu_ = true;       // new: toggle GPU update
-            bool host_params_dirty_ = false;  // host weights/biases need refresh after a GPU update
+            bool host_params_dirty_ = false;
             float *d_W_ = nullptr, *d_b_ = nullptr, *d_x_ = nullptr, *d_y_ = nullptr;
             float *d_dY_=nullptr, *d_dW_=nullptr, *d_db_=nullptr, *d_dX_=nullptr;
 
             void cudaInit_();
             void cudaFree_();
-            void cudaUploadParams_();  // copy W, b to device
-            void cudaForward(const float* x_host, float* y_host) const; // call forward kernel
+            void cudaUploadParams_();
+            void cudaForward(const float* x_host, float* y_host) const;
             void cudaBackward(const float* gradY_host, float* gradX_host);  
 
             void cudaUpdate(float learning_rate);
-            void syncDeviceToHost_();         // pull W,b to host when you need them (e.g., saveWeights)
+            void syncDeviceToHost_();
         #else
             bool use_cuda_ = false;
         #endif

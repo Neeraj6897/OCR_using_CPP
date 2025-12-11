@@ -32,7 +32,7 @@ NN_Layer::NN_Layer(int input_size, int output_size)
 
         #ifdef USE_CUDA
             cudaInit_();
-            cudaUploadParams_();  // upload W, b once
+            cudaUploadParams_();
         #endif
     }
 
@@ -82,7 +82,6 @@ vector<float> NN_Layer::backward(const vector<float>& gradient_output) {
         }
     #endif
 
-    // Move timer RIGHT before computation
     {
         TIMING_SCOPE("Backward " + to_string(input_size_) + "x" + to_string(output_size_));
         
@@ -208,6 +207,6 @@ void NN_Layer::loadWeights(const string& filename) {
     }
     in.close();
         #ifdef USE_CUDA
-        if (use_cuda_) cudaUploadParams_();   // keep device W,b in sync after loading
+        if (use_cuda_) cudaUploadParams_();
     #endif
 }
